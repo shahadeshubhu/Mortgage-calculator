@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/Principle"
+        app:layout_constraintStart_toEndOf="@id/Principle"
+        app:layout_constraintTop_toTopOf="@+id/Principle"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Principle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/interestRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -48,7 +48,7 @@
         android:text="Interest rate"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/Principle" />
 
     <Button
         android:id="@+id/Calculate"
@@ -72,14 +72,14 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <RadioGroup
-        android:id="@+id/loan_terms"
+        android:id="@+id/loan_term_options"
         android:layout_width="114dp"
         android:layout_height="115dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:checkedButton="@id/y15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5">
+        app:layout_constraintTop_toBottomOf="@+id/loanTerm">
 
         <RadioButton
             android:id="@+id/y15"
@@ -101,7 +101,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/loanTerm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -116,9 +116,9 @@
         android:id="@+id/RatePercent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/interestRate"
+        app:layout_constraintStart_toEndOf="@+id/interestRate"
+        app:layout_constraintTop_toTopOf="@+id/interestRate" />
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -141,6 +141,6 @@
         android:text="Include Taxes and insurance (0.1%)"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loan_terms" />
+        app:layout_constraintTop_toBottomOf="@+id/loan_term_options" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
