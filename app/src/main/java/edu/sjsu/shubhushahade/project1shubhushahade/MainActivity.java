@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                interestRate.setText("Interest rate: " + (float) intRate / 10);
+                interestRate.setText("Interest rate: " + (float) intRate );
             }
         });
     }
@@ -91,26 +91,26 @@ public class MainActivity extends AppCompatActivity {
     public void Calculate(View view){
 
         float T = 0;
-        float M = 0;
+        float M;
         float N = setLoanTerm() * 12;
         if (PrincipleAmt.getText().length() == 0) {
             Toast.makeText(this, "Please enter a valid number",
                     Toast.LENGTH_LONG).show();
             return; }
         float P = Float.parseFloat(PrincipleAmt.getText().toString());
-        if (checkBox.isChecked() == true){
+        if (checkBox.isChecked()){
             T = (float) ((0.1/100) * P);
         }
-        else if (checkBox.isChecked() == false){
+        else if (!checkBox.isChecked()){
             T = 0;
         }
 
         if (intRate > 0){
-            M = (P/N) * T;
-        }
-        else {
             float J = intRate/12;
             M = (float) ((P * J)/(1 - Math.pow((1 + J), - N) ) + T);
+        }
+        else {
+            M = (P/N) * T;
         }
 
         Result.setText(String.valueOf(M));
