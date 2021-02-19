@@ -2,6 +2,7 @@ package edu.sjsu.shubhushahade.project1shubhushahade;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -62,10 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void setSeekBar(){
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 intRate = progress;
-                interestRate.setText("Interest rate: " + (float) progress);
+                interestRate.setText("Interest rate: " + (float) intRate/10);
             }
 
             @Override
@@ -73,9 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                interestRate.setText("Interest rate: " + (float) intRate );
+                intRate = intRate/10;
+                interestRate.setText("Interest rate: " + (float) intRate);
             }
         });
     }
@@ -89,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Calculate(View view){
-
         float T = 0;
         float M;
         float N = setLoanTerm() * 12;
@@ -110,9 +113,8 @@ public class MainActivity extends AppCompatActivity {
             M = (float) ((P * J)/(1 - Math.pow((1 + J), - N) ) + T);
         }
         else {
-            M = (P/N) * T;
+            M = (P/N) + T;
         }
-
         Result.setText(String.valueOf(M));
     }
 
