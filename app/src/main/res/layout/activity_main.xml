@@ -90,7 +90,8 @@
             android:id="@+id/y15"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="15 years" />
+            android:text="15 years"
+            android:checked="true" />
 
         <RadioButton
             android:id="@+id/y20"

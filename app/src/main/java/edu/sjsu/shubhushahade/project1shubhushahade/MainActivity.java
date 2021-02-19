@@ -3,7 +3,6 @@ package edu.sjsu.shubhushahade.project1shubhushahade;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,26 +16,16 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    float intRate = 0;
     private EditText PrincipleAmt;
     private EditText Result;
-
-    private TextView Principle;
-    private TextView loanTerm;
     private TextView interestRate;
-
     private RadioGroup loanOptions;
-    private RadioButton y15;
-    private RadioButton y20;
-    private RadioButton y30;
-
     private Button calculate;
     private Button uninstall;
-
     private CheckBox checkBox;
     private SeekBar seekBar;
-
-    float intRate = 0;
-    int years = 15;
+    float years;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +34,25 @@ public class MainActivity extends AppCompatActivity {
 
         PrincipleAmt = (EditText) findViewById(R.id.PrincipleAmt);
         Result = findViewById(R.id.Result);
-        Principle = findViewById(R.id.Principle);
-        loanTerm = findViewById(R.id.loanTerm);
-        loanOptions = (RadioGroup) findViewById(R.id.loan_term_options);
+        TextView principle = findViewById(R.id.Principle);
+        TextView loanTerm = findViewById(R.id.loanTerm);
         interestRate = findViewById(R.id.interestRate);
-        y15 = (RadioButton) findViewById(R.id.y15);
-        y20 = (RadioButton) findViewById(R.id.y20);
-        y30 = (RadioButton) findViewById(R.id.y30);
         calculate = findViewById(R.id.Calculate);
         uninstall = findViewById(R.id.Uninstall);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         seekBar = findViewById(R.id.seekBar);
         setSeekBar();
-        }
+
+        loanOptions = (RadioGroup) findViewById(R.id.loan_term_options);
+        loanOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+              RadioButton loanYears =   (RadioButton) group.findViewById(checkedId);
+              years = Integer.parseInt(loanYears.getText().toString().substring(0,2));
+            }
+        });
+
+    }
 
 
     public void setSeekBar(){
@@ -84,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
     public int setLoanTerm(){
         y15.setOnClickListener(v -> years = 15);
         y20.setOnClickListener(v -> years = 20);
@@ -91,11 +87,27 @@ public class MainActivity extends AppCompatActivity {
 
         return years;
     }
+    */
+
+    /*
+    public int getLoanYears(){
+        int radioId = loanOptions.getCheckedRadioButtonId();
+        RadioButton loanYears = findViewById(radioId);
+        loanOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton loanYears = (RadioButton) group.findViewById(checkedId);
+            }
+        });
+        return Integer.parseInt(loanYears.getText().toString().substring(0,2));
+    }
+    */
 
     public void Calculate(View view){
         float T = 0;
         float M;
-        float N = setLoanTerm() * 12;
+        float N = years * 12;
+        double J = 0;
         if (PrincipleAmt.getText().length() == 0) {
             Toast.makeText(this, "Please enter a valid number",
                     Toast.LENGTH_LONG).show();
@@ -109,13 +121,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (intRate > 0){
-            float J = intRate/12;
-            M = (float) ((P * J)/(1 - Math.pow((1 + J), - N) ) + T);
+            J = intRate/1200;
+            M = (float) ((P * J)/(1 - (Math.pow((1 + J), - N))) + T);
         }
         else {
             M = (P/N) + T;
         }
         Result.setText(String.valueOf(M));
+
     }
 
 }
