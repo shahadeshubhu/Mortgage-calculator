@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText PrincipleAmt;
     private EditText Result;
     private TextView interestRate;
-    private RadioGroup loanOptions;
-    private Button calculate;
-    private Button uninstall;
     private CheckBox checkBox;
     private SeekBar seekBar;
     float years;
@@ -37,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         TextView principle = findViewById(R.id.Principle);
         TextView loanTerm = findViewById(R.id.loanTerm);
         interestRate = findViewById(R.id.interestRate);
-        calculate = findViewById(R.id.Calculate);
-        uninstall = findViewById(R.id.Uninstall);
+        Button calculate = findViewById(R.id.Calculate);
+        Button uninstall = findViewById(R.id.Uninstall);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         seekBar = findViewById(R.id.seekBar);
         setSeekBar();
 
-        loanOptions = (RadioGroup) findViewById(R.id.loan_term_options);
+        RadioGroup loanOptions = (RadioGroup) findViewById(R.id.loan_term_options);
         loanOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
