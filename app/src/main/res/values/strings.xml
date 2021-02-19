@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Mortgage calculator by Shubhu Shahade</string>
+    <string name="enter_principle">Enter Principle ($):</string>
+    <string name="interest_rate">Interest rate:</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="calculate">Calculate</string>
+    <string name="_15_years">15 years</string>
+    <string name="_20_years">20 years</string>
+    <string name="_30_years">30 years</string>
+    <string name="select_loan_term">Select Loan Term:</string>
+    <string name="include_taxes_and_insurance_0_1">Include Taxes and insurance (0.1%)</string>
 </resources>

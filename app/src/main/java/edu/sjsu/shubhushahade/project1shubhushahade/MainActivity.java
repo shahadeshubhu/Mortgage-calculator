@@ -16,6 +16,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class MainActivity extends AppCompatActivity {
 
     float intRate = 0;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView interestRate;
     private CheckBox checkBox;
     private SeekBar seekBar;
-    float years;
+    float years = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +46,9 @@ public class MainActivity extends AppCompatActivity {
         setSeekBar();
 
         RadioGroup loanOptions = (RadioGroup) findViewById(R.id.loan_term_options);
-        loanOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton loanYears =  (RadioButton) group.findViewById(checkedId);
-              years = Integer.parseInt(loanYears.getText().toString().substring(0,2));
-            }
+        loanOptions.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group, checkedId) -> {
+            RadioButton loanYears =  (RadioButton) group.findViewById(checkedId);
+          years = Integer.parseInt(loanYears.getText().toString().substring(0,2));
         });
 
         /*
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             M = (P/N) + T;
         }
+        M = (float) (Math.round(M * 100.0) / 100.0);
         Result.setText(String.valueOf(M));
 
     }
