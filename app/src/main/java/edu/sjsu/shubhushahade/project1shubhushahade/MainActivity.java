@@ -3,6 +3,8 @@ package edu.sjsu.shubhushahade.project1shubhushahade;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         TextView loanTerm = findViewById(R.id.loanTerm);
         interestRate = findViewById(R.id.interestRate);
         Button calculate = findViewById(R.id.Calculate);
-        Button uninstall = findViewById(R.id.Uninstall);
+        //Button uninstall = findViewById(R.id.Uninstall);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         seekBar = findViewById(R.id.seekBar);
         setSeekBar();
@@ -44,11 +46,18 @@ public class MainActivity extends AppCompatActivity {
         loanOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-              RadioButton loanYears =   (RadioButton) group.findViewById(checkedId);
+                RadioButton loanYears =  (RadioButton) group.findViewById(checkedId);
               years = Integer.parseInt(loanYears.getText().toString().substring(0,2));
             }
         });
 
+        /*
+        uninstall.setOnClickListener(v -> {
+            Intent delete = new Intent(Intent.ACTION_DELETE,
+                    Uri.parse("package:" + getPackageName()));
+            startActivity(delete);
+        });
+        */
     }
 
 
@@ -126,6 +135,15 @@ public class MainActivity extends AppCompatActivity {
         }
         Result.setText(String.valueOf(M));
 
+    }
+
+    public void Uninstall(View view){
+        Button uninstall = findViewById(R.id.Uninstall);
+        uninstall.setOnClickListener(v -> {
+            Intent delete = new Intent(Intent.ACTION_DELETE,
+                    Uri.parse("package:" + getPackageName()));
+            startActivity(delete);
+        });
     }
 
 }
